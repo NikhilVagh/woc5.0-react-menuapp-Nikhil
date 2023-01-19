@@ -1,20 +1,30 @@
+import { signOut } from "firebase/auth";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { auth } from "../firebase";
 
 
-export const Navbar = () => {
+export const Menus = () => {
+
+    const { currentUser } = useContext(AuthContext);
+
     return (
         <div className="menus">
             <div className="navbar">
                 <ul>
-                    <li><a class="main"> Fortune Restaurant</a></li>
+                    <li><a className="main"> Fortune Restaurant</a></li>
                     <li><a>Breakfast</a></li>
                     <li><a>Lunch</a></li>
                     <li><a>Dinner</a></li>
+                    {
+                        currentUser && <li className="logout"><button onClick={() => { signOut(auth); console.log("Logout") }}>LogOut</button></li>
+                    }
                 </ul>
             </div>
             <div className="all">
                 <div className="all-menu">
                     <div className="item" >
-                        <img onMouseOver="this.style.width='250px'" className="imgItem" src="https://www.bing.com/th?id=OIP.aJ5MrLKNYBfhJ7AfyuRBNAHaLG&w=204&h=306&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" />
+                        <img className="imgItem" src="https://www.bing.com/th?id=OIP.aJ5MrLKNYBfhJ7AfyuRBNAHaLG&w=204&h=306&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" />
                         <div className="details">
                             <span>Dish 1</span>
                             <textarea rows="6" cols="20" disabled>
@@ -57,6 +67,7 @@ export const Navbar = () => {
                             <button>Order Now</button>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

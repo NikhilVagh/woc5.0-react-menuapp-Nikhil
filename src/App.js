@@ -1,13 +1,35 @@
 import './App.scss';
-import { Navbar } from './components/Navbar';
-import { Home } from './pages/home';
+import { Menus } from './pages/Menus';
+import { Login_Register } from './pages/Login_Register';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
+
+  const { currentUser } = useContext(AuthContext);
+
+  const ProtectedRoute = ({children}) => {
+    if(!currentUser)
+    {
+      return <Navigate to="/" />
+    }
+
+    return children;
+  }
+
   return (
-    <div>
-      {/* <Home /> */}
-      <Navbar />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login_Register/>} />
+        <Route path='/menus' element={
+            <ProtectedRoute>
+              <Menus />
+            </ProtectedRoute>
+          } />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
