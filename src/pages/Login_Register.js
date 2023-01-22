@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export const Login_Register = () => {
@@ -109,6 +109,9 @@ export const Login_Register = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="customer">
+                    <Link to="/Menus">Customer</Link>
                 </div>
             </div>
         </main>

@@ -7,11 +7,11 @@ export const Item = (props) => {
         <div className="item" >
             <img className="imgItem" src={item.image} alt="" />
             <div className="details">
-                <span>{item.dishName}</span>
+                <span className="dishName">{item.dishName}</span>
                 <textarea rows="6" cols="20" disabled>
                     {item.description}
                 </textarea>
-                <span>{item.price}</span>
+                <span>{item.price}$</span>
                 <button>Order Now</button>
             </div>
         </div>

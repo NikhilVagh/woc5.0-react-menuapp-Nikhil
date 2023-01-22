@@ -25,7 +25,11 @@
 //     }
 // }
 
-*{
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+
+* {
     box-sizing: border-box;
 }
 
@@ -58,7 +62,7 @@ body {
         padding-top: 3%;
 
         h1 {
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-family: 'PT Sans', sans-serif;
             font-style: italic;
             font-variant: small-caps;
         }
@@ -73,7 +77,7 @@ body {
     .formContainer {
 
         h1 {
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-family: 'PT Sans', sans-serif;
             font-style: normal;
             color: black;
         }
@@ -161,6 +165,39 @@ body {
             }
         }
     }
+
+    .customer {
+        width: 20%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        margin-bottom: 4%;
+        border: 1px solid black;
+        border-radius: 10px 10px 10px 10px;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: cornsilk;
+        font-size: large;
+        font-weight: bold;
+
+        a {
+            text-decoration: none;
+            color: black;
+
+        }
+    }
+
+    .customer:hover {
+        transform: scale(1.06);
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.6);
+        background-color: black;
+
+        a {
+            color: yellow;
+
+        }
+    }
 }
 
 
@@ -192,8 +229,8 @@ body {
             text-decoration: none;
         }
 
-        .link:hover{
-            background-color:deeppink;
+        .link:hover {
+            background-color: deeppink;
             transform: scale(1.05);
             color: white;
             font-weight: bold;
@@ -243,22 +280,22 @@ body {
             background: transparent;
         }
 
-        .dropdown{
-            
-            .dropdown-content{
+        .dropdown {
+
+            .dropdown-content {
                 display: none;
                 position: absolute;
                 z-index: 1;
-                background-color:tan;
+                background-color: tan;
             }
         }
-        
-        .dropdown:hover{
-            .dropdown-content{
+
+        .dropdown:hover {
+            .dropdown-content {
                 display: block;
             }
 
-            a:hover{
+            a:hover {
                 background-color: darkgoldenrod;
                 color: white;
 
@@ -302,7 +339,7 @@ body {
             // width: 80%;
             margin: 30px;
             border-radius: 10px 10px 10px 10px;
-            
+
 
 
             .details {
@@ -312,9 +349,14 @@ body {
                 justify-content: space-between;
                 font-size: medium;
                 font-weight: 600;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
                 float: left;
                 background-color: transparent;
+
+                .dishName{
+                    max-width: 80%;
+                    font-family: 'Secular One', sans-serif;;
+                }
 
                 button {
                     margin-top: 20px;
@@ -340,16 +382,16 @@ body {
                     border: none;
                     background-color: transparent;
                     color: black;
-                    text-align: center;
-                    justify-content: center;
-                    align-items: center;
+                    // text-align: center;
+                    justify-content: space-between;
+                    // align-items: center;
                 }
             }
         }
 
         .item:hover {
             transform: scale(1.05);
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.6);
 
         }
 
@@ -425,7 +467,7 @@ body {
                 width: 100%;
                 border: none;
             }
-            
+
 
             button {
                 width: 40%;
@@ -433,7 +475,7 @@ body {
                 border: none;
                 background-color: lightgreen;
                 font-weight: 700;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-family: 'Barlow', sans-serif;
                 border-radius: 5px 5px 5px 5px;
 
             }

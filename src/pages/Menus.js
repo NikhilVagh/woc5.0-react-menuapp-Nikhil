@@ -43,13 +43,14 @@ export const Menus = () => {
         <div className="menus">
             <div className="navbar">
                 <ul>
-                    <li><a className="main" onClick={getItems}> Fortune Restaurant</a></li>
+                    <li><Link className="main" to="/" > Fortune Restaurant</Link></li>
+                    <li><a onClick={getItems}> All </a></li>
                     <li><a onClick={() => getMeal("Breakfast")}>Breakfast</a></li>
                     <li><a onClick={() => getMeal("Lunch")}>Lunch</a></li>
                     <li><a onClick={() => getMeal("Dinner")}>Dinner</a></li>
                     <li>
                         <div class="dropdown">
-                            <a>Dropdown</a>
+                            <a>Meal Filter</a>
                             <div class="dropdown-content">
                                 {
                                     uniqueItems?.map((uniqueItem) => (
