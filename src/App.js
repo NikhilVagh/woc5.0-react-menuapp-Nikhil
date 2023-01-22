@@ -4,6 +4,7 @@ import { Login_Register } from './pages/Login_Register';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+import { AddDish } from './pages/AddDish';
 
 function App() {
 
@@ -23,13 +24,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Login_Register/>} />
         <Route path='/menus' element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Menus />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           } />
+        <Route path='/AddDish' element={<AddDish />} />
 
       </Routes>
     </BrowserRouter>
+    // <AddDish />
   );
 }
 
