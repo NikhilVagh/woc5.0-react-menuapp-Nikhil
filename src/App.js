@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import { AddDish } from './pages/AddDish';
+import { ItemPage } from './pages/item_page';
+import { UpdateDish } from './pages/UpdateDish';
 
 function App() {
 
@@ -29,10 +31,12 @@ function App() {
             // </ProtectedRoute>
           } />
         <Route path='/AddDish' element={<AddDish />} />
-
+        <Route path='/ItemPage/:id' element={<ItemPage />} />
+        <Route path='/UpdateItem/:id' element={<UpdateDish />} />
       </Routes>
     </BrowserRouter>
     // <AddDish />
+    // <ItemPage />
   );
 }
 

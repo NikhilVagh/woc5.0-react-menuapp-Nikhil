@@ -38,6 +38,10 @@ body {
     min-height: 100vh;
 }
 
+button {
+    cursor: pointer;
+}
+
 .main1 {
     background-color: gray;
     color: white;
@@ -99,15 +103,8 @@ body {
             border-radius: 10px 10px 10px 10px;
             border: 10px solid rgba(0, 0, 0, 0.5);
             padding: 20%;
-            background-color: chocolate;
-        }
-
-        .formWrapper1 {
-            background-color: darkgoldenrod;
-        }
-
-        .formWrapper2 {
             background-color: darksalmon;
+
         }
 
         .block {
@@ -245,6 +242,10 @@ body {
             font-weight: bolder;
         }
 
+        .but {
+            border-bottom: 1px solid rgb(133, 127, 127);
+        }
+
         .logout {
             overflow: hidden;
             // position: fixed;
@@ -252,23 +253,26 @@ body {
             margin-right: 5mm;
             align-items: center;
             justify-content: center;
+            margin-top: 0.2ex;
 
             button {
-                background-color: aquamarine;
+                background-color: lavender;
                 overflow: hidden;
+                border: none;
                 border-radius: 10px 10px 10px 10px;
                 color: black;
                 font-weight: bold;
                 display: block;
                 text-align: center;
-                padding: 14px 16px;
+                padding: 16px 16px;
 
             }
 
             button:hover {
                 background-color: rgba(rgb(29, 21, 15), 0.65);
                 color: white;
-                border: 1px solid white;
+                border: none;
+
 
             }
         }
@@ -278,29 +282,70 @@ body {
             border-radius: 10px 10px 10px 10px;
             overflow: hidden;
             background: transparent;
+            transition: all 0.5s;
         }
 
-        .dropdown {
+        .dropbtn {
+            outline: none;
 
             .dropdown-content {
                 display: none;
                 position: absolute;
                 z-index: 1;
-                background-color: tan;
+                background-color: coral;
+                width: 10%;
+
+                .dropdown2-content {
+                    display: none;
+                    z-index: 1;
+                    background-color: bisque;
+                }
             }
         }
 
-        .dropdown:hover {
+        .dropdown {
+            // position: relative;
+            float: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+
+        .dropbtn:hover {
             .dropdown-content {
                 display: block;
             }
 
+
             a:hover {
-                background-color: darkgoldenrod;
+                background-color: brown;
                 color: white;
 
             }
+
+            .dropdown-content:hover {
+                .dropdown1-content {
+                    display: block;
+
+                }
+            }
+
+            .dropdown1-content:hover {
+                .dropdown2-content {
+                    display: block;
+                    font-size: small;
+
+                    a:hover {
+                        background-color: beige;
+                        color: black;
+                    }
+                }
+
+            }
         }
+
+
     }
 
     .imgItem {
@@ -325,7 +370,7 @@ body {
         // margin-top: 20mm;
 
         div {
-            background-color: rgba(255, 255, 255, 0.6);
+            background-color: snow;
             text-align: center;
             padding: 20px 0;
             font-size: 30px;
@@ -337,7 +382,7 @@ body {
             flex-direction: row;
             padding-left: 5px;
             // width: 80%;
-            margin: 30px;
+            margin: 2ex 1.5ex;
             border-radius: 10px 10px 10px 10px;
 
 
@@ -349,13 +394,30 @@ body {
                 justify-content: space-between;
                 font-size: medium;
                 font-weight: 600;
-                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
                 float: left;
                 background-color: transparent;
 
-                .dishName{
+                .dishName {
                     max-width: 80%;
-                    font-family: 'Secular One', sans-serif;;
+                    font-family: 'Secular One', sans-serif;
+                    ;
+                }
+
+                p {
+                    padding: 5px;
+                    margin: 10px;
+                    border: none;
+                    color: black;
+                    word-wrap: break-word;
+                    width: 27ex;
+                }
+
+                .but {
+                    background: transparent;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.5ex;
                 }
 
                 button {
@@ -376,30 +438,28 @@ body {
                     color: floralwhite;
                 }
 
-                textarea {
-                    padding: 5px;
-                    margin: 10px;
-                    border: none;
-                    background-color: transparent;
-                    color: black;
-                    // text-align: center;
-                    justify-content: space-between;
-                    // align-items: center;
+                .read {
+                    background-color: burlywood;
+
+                    a {
+                        text-decoration: none;
+                        color: inherit;
+                    }
                 }
+
+                .read:hover {
+                    background-color: purple;
+                    color: aliceblue;
+                }
+
             }
         }
 
         .item:hover {
             transform: scale(1.05);
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.6);
-
+            transition: all 0.5s;
         }
-
-        // .i0:hover{
-        // }
-
-        // .i1:hover{
-        // }
 
     }
 
@@ -471,17 +531,34 @@ body {
 
             button {
                 width: 40%;
-                padding: 10px;
+                padding: 2ex 5ex;
+                margin: 2ex 2ex;
                 border: none;
                 background-color: lightgreen;
                 font-weight: 700;
                 font-family: 'Barlow', sans-serif;
                 border-radius: 5px 5px 5px 5px;
 
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                }
+
             }
 
-            button:hover {
+            button:first-child {
+                background-color: gainsboro;
+                color: black;
+            }
+
+            button:nth-child(2):hover {
                 background-color: rgba(#6e8686, 0.9);
+                color: white;
+                transform: scale(1.05);
+            }
+
+            button:nth-child(1):hover {
+                background-color: darkslategray;
                 color: white;
                 transform: scale(1.05);
             }
@@ -494,4 +571,181 @@ body {
         }
     }
 
+}
+
+.itemPage {
+    display: flex;
+    width: 100vw;
+    // height: 100vh;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+
+    .name {
+        background-color: maroon;
+        color: white;
+        width: 90%;
+        text-align: center;
+        margin: 1% 0;
+        padding-left: 1ex;
+        padding-right: 1ex;
+        border: none;
+        border-radius: 10px 10px 10px 10px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+
+    .imgAndDetails {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+        gap: 5%;
+        margin-top: 5ex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 5ex;
+        font-family: 'PT Sans', sans-serif;
+
+        img {
+
+            height: 40ex;
+            width: 50ex;
+            border-radius: 20px;
+        }
+
+        img:hover {
+            transform: scale(1.06);
+            transition: all 0.5s;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.6);
+
+        }
+
+        .allDetails {
+            // width: 80%;
+            // border-left: 1px solid;
+            border-radius: 20px;
+            min-height: 40ex;
+            width: 80ex;
+            padding: 1%;
+            display: flex;
+            flex-direction: column;
+            background-color: lightgray;
+            justify-content: space-between;
+
+            * {
+                padding: 1%;
+            }
+
+            p {
+                word-wrap: break-word;
+                margin-left: 1%;
+                text-align: center;
+            }
+
+            h3 {
+                padding-bottom: 0;
+                margin-bottom: 0;
+                text-align: center;
+            }
+
+            button {
+                margin: 1ex;
+                padding: 0.9ex 2.8ex;
+                border-radius: 8px;
+                border: none;
+                color: whitesmoke;
+                font-weight: bold;
+            }
+
+            .edit {
+                background-color: rgba(green, 0.7);
+
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                }
+            }
+
+            .delete {
+                background-color: rgba(red, 0.7);
+
+            }
+
+            button:hover {
+                color: white;
+                transform: scale(1.06);
+                transition: all 0.5s;
+            }
+
+            .edit:hover {
+                background-color: darkgreen;
+            }
+
+            .delete:hover {
+                background-color: darkred;
+            }
+
+            #price {
+                font-family: 'Times New Roman', Times, serif
+            }
+        }
+
+    }
+
+    .order {
+
+        margin-bottom: 5ex;
+
+        button {
+            border-radius: 5px;
+            background-color: lightblue;
+            margin: 1ex;
+            padding: 2ex 5ex;
+            border-radius: 8px;
+            border: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: darkblue;
+            color: white;
+            transform: scale(1.06);
+            transition: all 0.5s;
+        }
+    }
+
+
+
+}
+
+.back {
+    align-self: stretch;
+    padding-left: 8.5ex;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    button {
+        justify-content: left;
+        text-align: left;
+        border-radius: 5px;
+        background-color: gainsboro;
+        margin: 1ex;
+        padding: 2ex 5ex;
+        border-radius: 12px;
+        border: none;
+        color: black;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: darkslategray;
+        color: white;
+        transform: scale(1.06);
+        transition: all 0.5s;
+    }
 }

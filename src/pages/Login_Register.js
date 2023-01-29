@@ -55,8 +55,8 @@ export const Login_Register = () => {
                     <h1> Fortune Restaurant </h1>
                 </div>
                 <div className="formContainer">
-                    <div className="formWrapper formWrapper1" >
-                        <div style={{ visibility: isLogin ? "visible" : "hidden" }}>
+                    <div className="formWrapper" >
+                        <div className="c1" style={{ display: isLogin ? "block" : "none" }}>
                             <h1> Login </h1>
                             <form className="formtab" onSubmit={handleSubmitlogin}>
                                 <div className="box">
@@ -68,22 +68,21 @@ export const Login_Register = () => {
                                 <button>Login</button>
                             </form>
                             {err && <span>Something went wrong</span>}
-                        </div>
-                        <div>
-                            <div className="side" style={{ visibility: !isLogin ? "visible" : "hidden" }}>
-                                <p>Do you have account?
+                            <div className="side">
+                                <p>Don't have account?
                                     <span onClick={() => {
                                         setIsLogin(!isLogin)
-                                    }}>Login</span>
+                                    }}>Register</span>
                                     {/* <Link to="/register">Register</Link> */}
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div className="formWrapper formWrapper2" >
-                        <div style={{ visibility: !isLogin ? "visible" : "hidden" }}>
+                        <div className="c2" style={{ display: !isLogin ? "block" : "none" }}>
                             <h1> Register </h1>
                             <form className="formtab" onSubmit={handleSubmitRegister}>
+                                {/* <div className="box">
+                                    <input type="text" placeholder="Restaurant Name" />
+                                </div> */}
                                 <div className="box">
                                     <input type="text" placeholder="Name" />
                                 </div>
@@ -96,17 +95,19 @@ export const Login_Register = () => {
                                 <button>Register</button>
                             </form>
                             {err && <span>Something went wrong</span>}
-
-                        </div>
-                        <div>
-                            <div className="side" style={{ visibility: isLogin ? "visible" : "hidden" }}>
-                                <p>Don't have account?
+                            <div className="side">
+                                <p>Do you have account?
                                     <span onClick={() => {
-                                        setIsLogin(!isLogin)
-                                    }}>Register</span>
+                                        setIsLogin(!isLogin);
+
+                                    }}>Login</span>
                                     {/* <Link to="/register">Register</Link> */}
                                 </p>
                             </div>
+
+
+                        </div>
+                        <div>
                         </div>
                     </div>
                 </div>

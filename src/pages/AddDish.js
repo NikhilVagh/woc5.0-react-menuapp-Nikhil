@@ -1,7 +1,7 @@
 import { doc, setDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { db, storage } from "../firebase";
 
@@ -80,6 +80,7 @@ export const AddDish = () => {
                         <input type="file" />
                     </div>
                     <div className="box">
+                        <button> <Link to="/menus"> Back </Link></button>
                         <button>Add</button>
                     </div>
                 </form>
