@@ -1,23 +1,20 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import { db, storage } from "../firebase";
 
 export const UpdateDish = () => {
 
     const [err, setErr] = useState(false);
-    const { currentUser } = useContext(AuthContext);
     const [dishNamechange, setDishNamechange] = useState(false);
     const [descriptionchange, setDescriptionchange] = useState(false);
     const [pricechange, setPricechange] = useState(false);
-    const [mealTypechange, setMealTypechange] = useState(false);
-    const [idchange, setIdchange] = useState(false);
     const [imgChange, setImgChange] = useState(false);
+    const [ videoLinkChange , setVideoLinkChange ] = useState(false);
+
 
     const navigate = useNavigate();
-
 
     const { id } = useParams();
 
@@ -44,9 +41,10 @@ export const UpdateDish = () => {
         const dishName = dishNamechange ? e.target[0].value : item.dishName;
         const description = descriptionchange ? e.target[1].value : item.description;
         const price = pricechange ? e.target[2].value : item.price;
-        const newId = idchange ? e.target[3].value : id;
-        const mealType = mealTypechange ? e.target[4].value : item.mealType;
-        const file = imgChange ? e.target[5].files[0] : item.image;
+        const mealType = e.target.mealType.value;
+        const foodType = e.target.foodType.value;
+        const file = imgChange ? e.target.img.files[0] : item.image;
+        const videoLink = videoLinkChange ? e.target.videoLink.value : item.videoLink;
 
         if (imgChange) {
             try {
@@ -62,14 +60,18 @@ export const UpdateDish = () => {
                         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                             console.log('File available at', downloadURL);
 
-                            await setDoc(doc(db, "items", newId), {
+                            await setDoc(doc(db, "items", id), {
                                 uid: item.uid,
                                 dishName,
                                 description,
                                 price,
                                 mealType,
+                                foodType,
+                                videoLink,
                                 image: downloadURL
                             });
+                            navigate(`/ItemPage/${id}`);
+
                         });
                     }
 
@@ -78,14 +80,18 @@ export const UpdateDish = () => {
                 setErr(true);
             }
         } else {
-            await setDoc(doc(db, "items", newId), {
+            await setDoc(doc(db, "items", id), {
                 uid: item.uid,
                 dishName,
                 description,
                 price,
                 mealType,
+                foodType,
+                videoLink,
                 image: file
             });
+            navigate(`/ItemPage/${id}`);
+
         }
     }
 
@@ -106,18 +112,33 @@ export const UpdateDish = () => {
                         <input type="number" placeholder={"Price (in $) : " + item?.price} step="0.01" min="0" onChange={() => { setPricechange(!pricechange); }} />
                     </div>
                     <div className="box">
-                        <input type="text" placeholder={"Item Id. : " + id} onChange={() => { setIdchange(!idchange) }} />
+                        <label for="mealType">Choose a Meal type : </label>
+                        <select name="mealType">
+                            <option value={item?.mealType}> Current : {item?.mealType}</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Snacks">Snacks</option>
+                        </select>
                     </div>
                     <div className="box">
-                        <input type="text" placeholder={"Meal type : " + item?.mealType} onChange={() => { setMealTypechange(!mealTypechange); }} />
+                        <label for="foodType">Choose a Food type : </label>
+                        <select name="foodType">
+                            <option value={item?.foodType}> Current : {item?.foodType}</option>
+                            <option value="Veg">Veg</option>
+                            <option value="Nonveg">Non-veg</option>
+                        </select>
                     </div>
                     <div className="box">
-                        <input type="file" onChange={() => {
+                        <input type="text" placeholder={"Video Link : " + item?.videoLink} name="videoLink" onChange={() => {setVideoLinkChange(!videoLinkChange)}} />
+                    </div>
+                    <div className="box">
+                        <input type="file" name="img" onChange={() => {
                             setImgChange(!imgChange);
                         }} />
                     </div>
                     <div className="box" >
-                        <button> <Link to="/menus"> Back </Link></button>
+                        <button> <Link to={`/ItemPage/${id}`}> Back </Link></button>
                         <button>Update</button>
                     </div>
                 </form>

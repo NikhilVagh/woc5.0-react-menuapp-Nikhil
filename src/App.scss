@@ -299,6 +299,9 @@ button {
                     display: none;
                     z-index: 1;
                     background-color: bisque;
+                    position: absolute;
+                    width: 20ex;
+                    margin-left: 10ex;
                 }
             }
         }
@@ -327,7 +330,6 @@ button {
             .dropdown-content:hover {
                 .dropdown1-content {
                     display: block;
-
                 }
             }
 
@@ -401,7 +403,6 @@ button {
                 .dishName {
                     max-width: 80%;
                     font-family: 'Secular One', sans-serif;
-                    ;
                 }
 
                 p {
@@ -528,6 +529,8 @@ button {
                 border: none;
             }
 
+            
+
 
             button {
                 width: 40%;
@@ -552,14 +555,16 @@ button {
             }
 
             button:nth-child(2):hover {
-                background-color: rgba(#6e8686, 0.9);
-                color: white;
+                background-color: green;
                 transform: scale(1.05);
+                transition: all 0.5s;
+                color: white;
             }
 
             button:nth-child(1):hover {
                 background-color: darkslategray;
                 color: white;
+                transition: all 0.5s;
                 transform: scale(1.05);
             }
         }
@@ -573,6 +578,17 @@ button {
 
 }
 
+label{
+    font-family: 'Barlow', sans-serif;
+}
+
+select{
+    padding: 0.8ex;
+    margin: 0.8ex;
+    border-radius: 10px 10px 10px 10px;
+    font-family: 'Barlow', sans-serif;
+}
+
 .itemPage {
     display: flex;
     width: 100vw;
@@ -583,7 +599,7 @@ button {
     background-color: aliceblue;
 
     .name {
-        background-color: maroon;
+        background-color: darkslategray;
         color: white;
         width: 90%;
         text-align: center;
@@ -592,6 +608,7 @@ button {
         padding-right: 1ex;
         border: none;
         border-radius: 10px 10px 10px 10px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.6);
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
 

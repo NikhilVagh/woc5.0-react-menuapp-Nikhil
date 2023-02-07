@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 import { db, storage } from "../firebase";
 
 export const AddDish = () => {
-
+    
     const [err, setErr] = useState(false);
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -14,12 +14,14 @@ export const AddDish = () => {
     const handleAdd = (e) => {
         e.preventDefault();
 
-        const dishName = e.target[0].value;
-        const description = e.target[1].value;
-        const price = e.target[2].value;
-        const id = e.target[3].value;
-        const mealType = e.target[4].value;
-        const file = e.target[5].files[0];
+        const dishName = e.target.dishName.value;
+        const description = e.target.description.value;
+        const price = e.target.price.value;
+        const id = e.target.id.value;
+        const file = e.target.file.files[0];
+        const mealType = e.target.mealType.value;
+        const foodType = e.target.foodType.value;
+        const videoLink = e.target.videoLink.value;
 
 
         try {
@@ -33,7 +35,6 @@ export const AddDish = () => {
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                        console.log('File available at', downloadURL);
 
                         await setDoc(doc(db, "items", id), {
                             uid: currentUser.uid,
@@ -41,6 +42,8 @@ export const AddDish = () => {
                             description,
                             price,
                             mealType,
+                            foodType,
+                            videoLink,
                             image: downloadURL
                         });
                         navigate("/menus");
@@ -62,22 +65,38 @@ export const AddDish = () => {
             <div className="inner" >
                 <form className="formtab" onSubmit={handleAdd}>
                     <div className="box">
-                        <input type="text" placeholder="Dish Name" />
+                        <input type="text" placeholder="Dish Name" name="dishName" />
                     </div>
                     <div className="box">
-                        <input type="text" placeholder="Description" />
+                        <input type="text" placeholder="Description" name="description" />
                     </div>
                     <div className="box">
-                        <input type="number" placeholder="Price (in $)" step="0.01" min="0" />
+                        <input type="number" placeholder="Price (in $)" step="0.01" min="0" name="price" />
                     </div>
                     <div className="box">
-                        <input type="text" placeholder="Item Id." />
+                        <input type="text" placeholder="Item Id." name="id" />
                     </div>
                     <div className="box">
-                        <input type="text" placeholder="Meal type" />
+                        <label for="mealType">Choose a Meal type : </label>
+                        <select name="mealType">
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Snacks">Snacks</option>
+                        </select>
                     </div>
                     <div className="box">
-                        <input type="file" />
+                        <label for="foodType">Choose a Food type : </label>
+                        <select name="foodType">
+                            <option value="Veg">Veg</option>
+                            <option value="Nonveg">Non-veg</option>
+                        </select>
+                    </div>
+                    <div className="box">
+                        <input type="text" placeholder="Enter Video Link..." name="videoLink" />
+                    </div>
+                    <div className="box">
+                        <input type="file" name="file" />
                     </div>
                     <div className="box">
                         <button> <Link to="/menus"> Back </Link></button>

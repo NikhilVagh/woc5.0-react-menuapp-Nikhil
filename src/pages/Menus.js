@@ -17,21 +17,34 @@ export const Menus = () => {
 
     const [uniqueItems, setUniqueItems] = useState(null);
 
-    const itemRef = collection(db, "items");
+    const [uniqueVeg , setUniqueVeg] = useState(null);
 
+    
     const getItems = async () => {
-        const data = await getDocs(itemRef);
+        const itemRef = collection(db, "items");
+        let itemData = itemRef;
+        if(currentUser)
+        {
+            itemData = query(itemRef, where("uid", "==", currentUser.uid));
+        }
+        const data = await getDocs(itemData);
         const itemList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         setItems(itemList);
         setCurrentItems(itemList);
         const unique = itemList?.map(item => item.mealType);
         setUniqueItems(unique?.filter((item, idx) => unique.indexOf(item) === idx));
+        const uniqueV = itemList?.map(item => item.foodType);
+        setUniqueVeg(uniqueV?.filter((item, idx) => uniqueV.indexOf(item) === idx));
     };
 
     const getMeal = (meanType) => {
 
         setCurrentItems(items.filter(item => item.mealType === meanType));
     };
+
+    const getVeg = (foodType) => {
+        setCurrentItems(items.filter(item => item.foodType === foodType));
+    }
 
 
     useEffect(() => {
@@ -66,16 +79,16 @@ export const Menus = () => {
                                         </div>
                                     </div>
                                     {/* <br /> */}
-                                    {/* <div className="dropdown1-content">
-                                        <a className="but">test</a>
+                                    <div className="dropdown1-content">
+                                        <a className="but">Food Type</a>
                                         <div class="dropdown2-content">
                                             {
-                                                uniqueItems?.map((uniqueItem) => (
-                                                    <a href="#" onClick={() => getMeal(uniqueItem)}>{uniqueItem}</a>
+                                                uniqueVeg?.map((unique) => (
+                                                    <a href="#" onClick={() => getVeg(unique)}>{unique}</a>
                                                 ))
                                             }
                                         </div>
-                                    </div> */}
+                                    </div>
                                 </div>
                             </div>
                         </div>

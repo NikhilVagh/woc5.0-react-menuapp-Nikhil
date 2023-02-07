@@ -12,9 +12,8 @@ function App() {
 
   const { currentUser } = useContext(AuthContext);
 
-  const ProtectedRoute = ({children}) => {
-    if(!currentUser)
-    {
+  const ProtectedRoute = ({ children }) => {
+    if (!currentUser) {
       return <Navigate to="/" />
     }
 
@@ -24,19 +23,21 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login_Register/>} />
-        <Route path='/menus' element={
-            // <ProtectedRoute>
-              <Menus />
-            // </ProtectedRoute>
-          } />
-        <Route path='/AddDish' element={<AddDish />} />
+        <Route path='/' element={<Login_Register />} />
+        <Route path='/menus' element={<Menus />} />
+        <Route path='/AddDish' element={
+          <ProtectedRoute>
+            <AddDish />
+          </ProtectedRoute>
+        } />
         <Route path='/ItemPage/:id' element={<ItemPage />} />
-        <Route path='/UpdateItem/:id' element={<UpdateDish />} />
+        <Route path='/UpdateItem/:id' element={
+          <ProtectedRoute>
+            <UpdateDish />
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
-    // <AddDish />
-    // <ItemPage />
   );
 }
 
