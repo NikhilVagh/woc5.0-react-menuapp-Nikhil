@@ -24,7 +24,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login_Register />} />
-        <Route path='/menus' element={<Menus />} />
+        <Route path='/Menus' element={<Menus />} />
         <Route path='/AddDish' element={
           <ProtectedRoute>
             <AddDish />
