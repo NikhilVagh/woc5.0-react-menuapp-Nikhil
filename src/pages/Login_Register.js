@@ -26,14 +26,16 @@ export const Login_Register = () => {
 
     const handleSubmitRegister = async (e) => {
         e.preventDefault();
-        const name = e.target[0].value;
-        const email = e.target[1].value;
-        const password = e.target[2].value;
+        const restaurant = e.target[0].value;
+        const name = e.target[1].value;
+        const email = e.target[2].value;
+        const password = e.target[3].value;
 
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
             await setDoc(doc(db, "users", res.user.uid), {
                 uid: res.user.uid,
+                restaurant,
                 name,
                 email,
                 password
@@ -60,10 +62,10 @@ export const Login_Register = () => {
                             <h1> Login </h1>
                             <form className="formtab" onSubmit={handleSubmitlogin}>
                                 <div className="box">
-                                    <input type="email" placeholder="Email" />
+                                    <input type="email" placeholder="Email" required />
                                 </div>
                                 <div className="box">
-                                    <input type="password" placeholder="Password" />
+                                    <input type="password" placeholder="Password" required />
                                 </div>
                                 <button>Login</button>
                             </form>
@@ -73,24 +75,23 @@ export const Login_Register = () => {
                                     <span onClick={() => {
                                         setIsLogin(!isLogin)
                                     }}>Register</span>
-                                    {/* <Link to="/register">Register</Link> */}
                                 </p>
                             </div>
                         </div>
                         <div className="c2" style={{ display: !isLogin ? "block" : "none" }}>
                             <h1> Register </h1>
                             <form className="formtab" onSubmit={handleSubmitRegister}>
-                                {/* <div className="box">
-                                    <input type="text" placeholder="Restaurant Name" />
-                                </div> */}
                                 <div className="box">
-                                    <input type="text" placeholder="Name" />
+                                    <input type="text" placeholder="Restaurant Name" required />
                                 </div>
                                 <div className="box">
-                                    <input type="email" placeholder="Email" />
+                                    <input type="text" placeholder="Name" required />
                                 </div>
                                 <div className="box">
-                                    <input type="password" placeholder="Password" />
+                                    <input type="email" placeholder="Email" required />
+                                </div>
+                                <div className="box">
+                                    <input type="password" placeholder="Password" required />
                                 </div>
                                 <button>Register</button>
                             </form>
@@ -101,7 +102,6 @@ export const Login_Register = () => {
                                         setIsLogin(!isLogin);
 
                                     }}>Login</span>
-                                    {/* <Link to="/register">Register</Link> */}
                                 </p>
                             </div>
 

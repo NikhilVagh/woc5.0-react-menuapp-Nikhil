@@ -28,6 +28,7 @@ export const Menus = () => {
             itemData = query(itemRef, where("uid", "==", currentUser.uid));
         }
         const data = await getDocs(itemData);
+        console.log(data);
         const itemList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         setItems(itemList);
         setCurrentItems(itemList);

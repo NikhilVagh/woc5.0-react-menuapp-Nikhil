@@ -6,19 +6,13 @@ import { db, storage } from "../firebase";
 
 export const UpdateDish = () => {
 
-    const [err, setErr] = useState(false);
-    const [dishNamechange, setDishNamechange] = useState(false);
-    const [descriptionchange, setDescriptionchange] = useState(false);
-    const [pricechange, setPricechange] = useState(false);
-    const [imgChange, setImgChange] = useState(false);
-    const [ videoLinkChange , setVideoLinkChange ] = useState(false);
-
-
     const navigate = useNavigate();
 
     const { id } = useParams();
 
     const [item, setItem] = useState(null);
+    const [err, setErr] = useState(false);
+    const [imgChange, setImgChange] = useState(false);
 
     const getItem = async () => {
         const itemsRef = doc(db, "items", id);
@@ -38,17 +32,11 @@ export const UpdateDish = () => {
     const handleAdd = async (e) => {
         e.preventDefault();
 
-        const dishName = dishNamechange ? e.target[0].value : item.dishName;
-        const description = descriptionchange ? e.target[1].value : item.description;
-        const price = pricechange ? e.target[2].value : item.price;
-        const mealType = e.target.mealType.value;
-        const foodType = e.target.foodType.value;
         const file = imgChange ? e.target.img.files[0] : item.image;
-        const videoLink = videoLinkChange ? e.target.videoLink.value : item.videoLink;
 
         if (imgChange) {
             try {
-                const storageRef = ref(storage, dishName);
+                const storageRef = ref(storage, item?.dishName);
 
                 const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -62,12 +50,12 @@ export const UpdateDish = () => {
 
                             await setDoc(doc(db, "items", id), {
                                 uid: item.uid,
-                                dishName,
-                                description,
-                                price,
-                                mealType,
-                                foodType,
-                                videoLink,
+                                dishName: item.dishName,
+                                description: item.description,
+                                price: item.price,
+                                mealType: item.mealType,
+                                foodType: item.foodType,
+                                videoLink: item.videoLink,
                                 image: downloadURL
                             });
                             navigate(`/ItemPage/${id}`);
@@ -82,12 +70,12 @@ export const UpdateDish = () => {
         } else {
             await setDoc(doc(db, "items", id), {
                 uid: item.uid,
-                dishName,
-                description,
-                price,
-                mealType,
-                foodType,
-                videoLink,
+                dishName: item.dishName,
+                description: item.description,
+                price: item.price,
+                mealType: item.mealType,
+                foodType: item.foodType,
+                videoLink: item.videoLink,
                 image: file
             });
             navigate(`/ItemPage/${id}`);
@@ -103,17 +91,33 @@ export const UpdateDish = () => {
             <div className="inner" >
                 <form className="formtab" onSubmit={handleAdd}>
                     <div className="box">
-                        <input type="text" placeholder={"Dish Name : " + item?.dishName} onChange={() => { setDishNamechange(!dishNamechange); }} />
+                        <input type="text" name="dishName" placeholder={"Dish Name : " + item?.dishName} onChange={(e) => {
+                            let newItem = item;
+                            newItem.dishName = e.target.value;
+                            setItem(newItem);
+                        }} />
                     </div>
                     <div className="box">
-                        <input type="text" placeholder={"Description : " + item?.description} onChange={() => { setDescriptionchange(!descriptionchange); }} />
+                        <input type="text" name="description" placeholder={"Description : " + item?.description} onChange={(e) => {
+                            let newItem = item;
+                            newItem.description = e.target.value;
+                            setItem(newItem);
+                        }} />
                     </div>
                     <div className="box">
-                        <input type="number" placeholder={"Price (in $) : " + item?.price} step="0.01" min="0" onChange={() => { setPricechange(!pricechange); }} />
+                        <input type="number" name="price" placeholder={"Price (in ₹) : " + item?.price} step="0.01" min="0" onChange={(e) => {
+                            let newItem = item;
+                            newItem.price = e.target.value;
+                            setItem(newItem);
+                        }} />
                     </div>
                     <div className="box">
                         <label for="mealType">Choose a Meal type : </label>
-                        <select name="mealType">
+                        <select name="mealType" onChange={(e) => {
+                            let newItem = item;
+                            newItem.mealType = e.target.value;
+                            setItem(newItem);
+                        }}>
                             <option value={item?.mealType}> Current : {item?.mealType}</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
@@ -123,14 +127,22 @@ export const UpdateDish = () => {
                     </div>
                     <div className="box">
                         <label for="foodType">Choose a Food type : </label>
-                        <select name="foodType">
+                        <select name="foodType" onChange={(e) => {
+                            let newItem = item;
+                            newItem.vegType = e.target.value;
+                            setItem(newItem);
+                        }}>
                             <option value={item?.foodType}> Current : {item?.foodType}</option>
                             <option value="Veg">Veg</option>
                             <option value="Nonveg">Non-veg</option>
                         </select>
                     </div>
                     <div className="box">
-                        <input type="text" placeholder={"Video Link : " + item?.videoLink} name="videoLink" onChange={() => {setVideoLinkChange(!videoLinkChange)}} />
+                        <input type="text" placeholder={"Video Link : " + item?.videoLink} name="videoLink" onChange={(e) => {
+                            let newItem = item;
+                            newItem.videoLink = e.target.value;
+                            setItem(newItem);
+                        }} />
                     </div>
                     <div className="box">
                         <input type="file" name="img" onChange={() => {

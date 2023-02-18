@@ -65,20 +65,20 @@ export const AddDish = () => {
             <div className="inner" >
                 <form className="formtab" onSubmit={handleAdd}>
                     <div className="box">
-                        <input type="text" placeholder="Dish Name" name="dishName" />
+                        <input type="text" placeholder="Dish Name" name="dishName" required />
                     </div>
                     <div className="box">
-                        <input type="text" placeholder="Description" name="description" />
+                        <input type="text" placeholder="Description" name="description" required />
                     </div>
                     <div className="box">
-                        <input type="number" placeholder="Price (in $)" step="0.01" min="0" name="price" />
+                        <input type="number" placeholder="Price (in ₹)" step="0.01" min="0" name="price" required />
                     </div>
                     <div className="box">
-                        <input type="text" placeholder="Item Id." name="id" />
+                        <input type="text" placeholder="Item Id." name="id" required />
                     </div>
                     <div className="box">
                         <label for="mealType">Choose a Meal type : </label>
-                        <select name="mealType">
+                        <select name="mealType" required>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
                             <option value="Dinner">Dinner</option>
@@ -87,16 +87,16 @@ export const AddDish = () => {
                     </div>
                     <div className="box">
                         <label for="foodType">Choose a Food type : </label>
-                        <select name="foodType">
+                        <select name="foodType" required>
                             <option value="Veg">Veg</option>
                             <option value="Nonveg">Non-veg</option>
                         </select>
                     </div>
                     <div className="box">
-                        <input type="text" placeholder="Enter Video Link..." name="videoLink" />
+                        <input type="text" placeholder="Enter Video Link..." name="videoLink" required />
                     </div>
                     <div className="box">
-                        <input type="file" name="file" />
+                        <input type="file" name="file" required />
                     </div>
                     <div className="box">
                         <button> <Link to="/menus"> Back </Link></button>
